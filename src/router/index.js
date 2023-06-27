@@ -27,6 +27,17 @@ const router = createRouter({
       name: 'JobDetails',
       component: JobDetails,
       props: true
+    },
+    //redirect
+    {
+      path: '/all-jobs',
+      redirect: '/jobs'
+    },
+    //Catch all 404
+    {
+      path: '/:catchAll(.*)',
+      name: 'NotFound',
+      component: () => import('../views/NotFound.vue')
     }
   ]
 })
