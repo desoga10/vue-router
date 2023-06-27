@@ -5,20 +5,39 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+    <button @click="redirect">Redirect</button>
+    <button @click="back">Go Back</button>
+    <button @click="forward">Go Forward</button>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink :to="{name: 'about'}">About</RouterLink>
-        <RouterLink :to="{name: 'jobs'}">Jobs</RouterLink>
+        <RouterLink :to="{ name: 'about' }">About</RouterLink>
+        <RouterLink :to="{ name: 'jobs' }">Jobs</RouterLink>
       </nav>
     </div>
   </header>
 
   <RouterView />
 </template>
+
+<script>
+export default {
+  methods: {
+    redirect() {
+      this.$router.push({ name: 'about' })
+    },
+    back() {
+      this.$router.go(-1)
+    },
+    forward() {
+      this.$router.go(1)
+    }
+  }
+}
+</script>
+
 
 <style scoped>
 header {
@@ -54,6 +73,18 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+button {
+  display: block;
+  margin: 2 auto 2rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  background-color: transparent;
+  color: var(--color-text);
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 @media (min-width: 1024px) {
